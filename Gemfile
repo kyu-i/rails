@@ -42,6 +42,13 @@ gem "jbuilder"
 gem 'tzinfo-data'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+
+# Devise
+gem 'devise'
+gem 'omniauth-twitter'
+# 以下を追記
+# gem 'devise-i18n'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
