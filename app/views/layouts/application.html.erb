@@ -14,8 +14,12 @@
       <nav>
           <% if user_signed_in? %>
           
-            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            <%= link_to("しおり作成サイト", "/plans") %>
+            <%= link_to("新規投稿", "/plans/new") %>
+            <%= link_to("投稿一覧", "/plans") %>
+
             <%= link_to 'ログアウト', destroy_user_session_path, method: :get %>
+
           <% else %>
             <%= link_to 'サインアップ', new_user_registration_path %>
             <%= link_to 'ログイン', new_user_session_path %>

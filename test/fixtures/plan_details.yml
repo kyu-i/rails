@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spot_date: 2022-09-25
+  start_time: 2022-09-25 19:46:04
+  end_time: 2022-09-25 19:46:04
+  destination: MyString
+  spot_content: MyText
+  movement: 1
+  plan: one
+
+two:
+  spot_date: 2022-09-25
+  start_time: 2022-09-25 19:46:04
+  end_time: 2022-09-25 19:46:04
+  destination: MyString
+  spot_content: MyText
+  movement: 1
+  plan: two

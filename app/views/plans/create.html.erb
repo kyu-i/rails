@@ -1,0 +1,31 @@
+<div class="title_box">
+<h3><%= @plan_outline.title %></h3>
+<div class="date">
+    <%=@plan_outline.start_date%>~<%=@plan_outline.end_date%>
+</div>
+
+</div>
+
+<%= form_tag("/plans/#{@plan_outline.id}/plan_details/new") do %>
+<dev class="plandetail">
+    <input type="date" name="spot_date">
+    <div class="spot_time">
+        <input type="time" name="start_time">~<input type="time" name="end_time">
+    </div>
+    <input type="text" placeholder="タイトル" name="destination">
+    <input type="text" placeholder="内容" name="spot_content">
+    <div class="movement">
+        <p>ここまでの移動</p>
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        <input type="radio" name="movement">
+        </div>
+    </dev>
+    <input type="submit" value="予定の追加,練習としてとりあえずこれをおしてから下の登録ボタンをおす設定">
+    <% end %>
+    
+<%= button_to '登録!', '/plans/#{@plan_outline.id}', method: :get %>

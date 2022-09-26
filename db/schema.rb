@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_24_042719) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_25_104604) do
+  create_table "plan_details", charset: "utf8mb4", force: :cascade do |t|
+    t.date "spot_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.string "destination"
+    t.text "spot_content"
+    t.integer "movement"
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_plan_details_on_plan_id"
+  end
+
+  create_table "plans", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "memo"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -38,4 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_042719) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "plan_details", "plans"
+  add_foreign_key "plans", "users"
 end
