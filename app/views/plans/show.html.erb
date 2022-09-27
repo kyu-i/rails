@@ -1,15 +1,14 @@
-
 <div class="plan_outline">
-    <h2><%=@plan.title%></h2>
-    <h3><%=@plan.start_date%></h3><p>~</p><h3><%=@plan.end_date%></h3>
-    <p><%= @plan.memo%></p>
+    <h2><%= @plan.title %></h2>
+    <h3><%= @plan.start_date %></h3><p>~</p><h3><%= @plan.end_date %></h3>
+    <p><%= @plan.memo %></p>
 </div>
 <div class="container">
     <div class="container_left">
-        <div class="spot_time"><%=@plan_detail.start_time.strftime("%H:%M")%><p>~</p><%=@plan_detail.end_time.strftime("%H:%M")%></div>
+        <div class="spot_time"><%= @plan_detail.start_time.strftime("%H:%M") %><p>~</p><%= @plan_detail.end_time.strftime("%H:%M") %></div>
         </div>
     <div class="container_right">
-        <h2><%=@plan_detail.destination%></h2>
-        <p class="destination_text"><%=@plan_detail.spot_content%></p>
+        <h2><%= @plan_detail.destination %></h2>
+        <p class="destination_text"><%= @plan_detail.spot_content %></p>
     </div>
 </div>

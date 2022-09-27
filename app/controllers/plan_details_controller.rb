@@ -1,18 +1,18 @@
 class PlanDetailsController < ApplicationController
-    def new 
-        @plan_detail = PlanDetail.new(spot_date: params[:spot_date],
-        start_time: params[:start_time],
-        end_time: params[:end_time],
-        destination: params[:destination],
-        spot_content: params[:spot_content],
-        movement: params[:movement])
-        
-        @plan_detail.plan_id = params[:id]
+    before_action :authenticate_user!
 
-        if @plan_detail.save!
+    
+    def new       
+        @plan_detail = PlanDetail.new(plan_detail_params)        
+        if @plan_detail.save
             flash[:notice] = "detail save"
         else 
             flash[:notice] = "detail not save"
         end
+    end
+    private
+    def plan_detail_params
+        params.permit(:spot_date,:start_time,:end_time,
+            :destination,:spot_content,:movement).merge(plan_id: params[:id])
     end
 end

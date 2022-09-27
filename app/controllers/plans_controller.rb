@@ -1,24 +1,20 @@
 class PlansController < ApplicationController
+    before_action :authenticate_user!
     def index
         @plans = Plan.where(user_id: current_user.id)
-        # flash[:notice] = "#{@plans.title}"
     end
 
     def new        
-        @plan_outline = Plan.new() 
+        @plan = Plan.new() 
     end
+
     
     def create
-        @plan_outline = Plan.new(title: params[:title],
-        start_date: params[:start_date],
-        end_date: params[:end_date],
-        memo: params[:memo]
-        )
-        @plan_outline.user_id = current_user.id
-        if @plan_outline.save!
-            flash[:notice] = "plan_outline save"
+        @plan = Plan.new(plan_params)
+        if @plan.save
+            flash[:notice] = "plan save"
         else 
-            flash[:notice] = "plan_outline not save"
+            flash[:notice] = "plan not save"
         end
         render("plans/create")
     end
@@ -28,5 +24,9 @@ class PlansController < ApplicationController
         @plan_detail = PlanDetail.find_by(plan_id: params[:id])
     end
 
+    private
+        def plan_params
+            params.permit(:title,:start_date,:end_date,:memo).merge(user_id: current_user.id)
+        end
 
 end

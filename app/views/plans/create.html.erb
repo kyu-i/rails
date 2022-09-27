@@ -1,12 +1,12 @@
 <div class="title_box">
-<h3><%= @plan_outline.title %></h3>
+<h3><%= @plan.title %></h3>
 <div class="date">
-    <%=@plan_outline.start_date%>~<%=@plan_outline.end_date%>
+    <%= @plan.start_date %>~<%= @plan.end_date %>
 </div>
 
 </div>
 
-<%= form_tag("/plans/#{@plan_outline.id}/plan_details/new") do %>
+<%= form_tag("/plans/#{@plan.id}/plan_details/new") do %>
 <dev class="plandetail">
     <input type="date" name="spot_date">
     <div class="spot_time">
@@ -26,6 +26,6 @@
         </div>
     </dev>
     <input type="submit" value="予定の追加,練習としてとりあえずこれをおしてから下の登録ボタンをおす設定">
-    <% end %>
+<% end %>
     
-<%= button_to '登録!', '/plans/#{@plan_outline.id}', method: :get %>
+<%= button_to '登録!', '/plans/#{@plan.id}', method: :get%>

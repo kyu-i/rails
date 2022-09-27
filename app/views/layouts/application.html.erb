@@ -12,9 +12,9 @@
   <body>
     <header>
       <nav>
-          <% if user_signed_in? %>
-          
+          <% if user_signed_in? %>     
             <%= link_to("しおり作成サイト", "/plans") %>
+            <strong><%= link_to(current_user.nickname , "/plans") %></strong>
             <%= link_to("新規投稿", "/plans/new") %>
             <%= link_to("投稿一覧", "/plans") %>
 
