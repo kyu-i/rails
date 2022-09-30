@@ -1,18 +1,50 @@
-<dev class="plandetail">
-    <input type="date" name="spot_date">
-    <div class="spot_time">
-    <input type="time"><p>~</p><input type="time">
-    </div>
-    <input type="text" placeholder="タイトル">
-    <input type="text" placeholder="内容">
-    <div class="movement">
-    <p>ここまでの移動</p>
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    <input type="radio" name="movement">
-    </div>
-</dev>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<div class="title_box">
+<h3><%= @plan.title %></h3>
+<div class="date">
+    <%= @plan.start_date %>~<%= @plan.end_date %>
+</div>
+</div>
+
+<div class="plan">
+    <%= form_tag("/plans/#{@plan.id}/plan_details/new") do %>
+    <dev class="plan_detail">
+        <input type="date" name="spot_date" class="spot_date">
+        <div class="spot_time">
+            <input type="time" name="start_time" class="start_time">~<input type="time" name="end_time_1" class="end_time">
+        </div>
+        <input type="text" class="destination" name="destination" placeholder="タイトル">
+        <input type="text" class="spot_content" name="spot_content" placeholder="内容">
+        <button type="button" class="plan_add button" value="1">予定の追加</button>
+    </dev>
+    <%= button_to '登録!', "/plans/#{@plan.id}" %>
+    <% end %>
+</div>
+    
+
+<script type="text/javascript">
+var plancount = 1;
+$('.plan_add').click(function() {
+    var select_id = $(this).val();
+    plancount++;
+    $plan_clone = $('.plan_detail_' + select_id).clone(true)
+    .attr('class', 'plan_detail_' + plancount)
+    .insertAfter('.plan_detail_' + select_id); 
+    $plan_clone.find('.button').val(plancount);
+
+    $plan_clone.find('.spot_date').val("");
+    $plan_clone.find('.start_time').val("");
+    $plan_clone.find('.end_time').val("");
+    $plan_clone.find('.destination').val("");
+    $plan_clone.find('.spot_content').val("");
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+
+
+});
+</script>

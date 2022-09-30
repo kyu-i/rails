@@ -1,12 +1,12 @@
 <h1>新規投稿</h1>
 
-<%= form_tag("/plans/create") do %>
+<%= form_with model: @plan, url:'/plans/create' do |plan|%>
     <h3>行先</h3>
-    <input type="text" name="title" placeholder="北海道旅行">
+    <%= plan.text_field :title %>
     <h3>日程</h3>
-    <input type="date" name="start_date" placeholder="20XX年XX月XX日">
+    <%= plan.date_field :start_date %>
     <p>~</p>
-    <input type="date" name="end_date" placeholder="20XX年XX月XX日"> 
-    <input type="text" name="memo" placeholder="メモ">
-    <input type="submit" value="次へ">
+    <%= plan.date_field :end_date %>
+    <%= plan.text_field :memo %>
+    <%= plan.submit %>
 <% end %>

@@ -10,9 +10,14 @@ class PlanDetailsController < ApplicationController
             flash[:notice] = "detail not save"
         end
     end
+
+
     private
     def plan_detail_params
         params.permit(:spot_date,:start_time,:end_time,
             :destination,:spot_content,:movement).merge(plan_id: params[:id])
+            
+        # params.require(:plan).permit(:spot_date,:start_time,:end_time,
+        #     :destination,:spot_content,:movement).merge(plan_id: params[:id])
     end
 end

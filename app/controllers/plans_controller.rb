@@ -6,6 +6,8 @@ class PlansController < ApplicationController
 
     def new        
         @plan = Plan.new() 
+        # @plan_detail = @plan.detail_plans.build
+        # @plan_detail = PlanDetail.new() 
     end
 
     
@@ -16,6 +18,7 @@ class PlansController < ApplicationController
         else 
             flash[:notice] = "plan not save"
         end
+        
         render("plans/create")
     end
     
@@ -26,7 +29,7 @@ class PlansController < ApplicationController
 
     private
         def plan_params
-            params.permit(:title,:start_date,:end_date,:memo).merge(user_id: current_user.id)
+            params.require(:plan).permit(:title,:start_date,:end_date,:memo).merge(user_id: current_user.id)
         end
 
 end

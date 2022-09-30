@@ -49,6 +49,12 @@ gem 'omniauth-twitter'
 # 以下を追記
 # gem 'devise-i18n'
 
+# Webpacker
+gem 'webpacker'
+
+# cocoon
+gem 'cocoon'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

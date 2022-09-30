@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get "plans/new" => "plans#new"
   post "plans/create" => "plans#create"
   post "plans/:id/plan_details/new" => "plan_details#new"
-  get "plans/:id" => "plans#show"
+  post "plans/:id" => "plans#show"
 end
