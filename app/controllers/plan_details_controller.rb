@@ -2,15 +2,24 @@ class PlanDetailsController < ApplicationController
     before_action :authenticate_user!
 
     
-    def new       
-        @plan_detail = PlanDetail.new(plan_detail_params)        
+    def new
+        @plan = Plan.find params[:plan_id]
+        @plan_detail = @plan.plan_details.build
+        # if @plan_detail.save
+        #     flash[:notice] = "detail save"
+        # else 
+        #     flash[:notice] = "detail not save"
+        # end
+    end
+
+    def create
+        @plan_detail = PlanDetail.new(plan_detail_params) 
         if @plan_detail.save
             flash[:notice] = "detail save"
         else 
             flash[:notice] = "detail not save"
         end
     end
-
 
     private
     def plan_detail_params

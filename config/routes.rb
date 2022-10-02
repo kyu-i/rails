@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root 'plans#index'
-  get "plans" => "plans#index"
-  get "plans/new" => "plans#new"
-  post "plans/create" => "plans#create"
-  post "plans/:id/plan_details/new" => "plan_details#new"
-  post "plans/:id" => "plans#show"
+  # get "plans" => "plans#index"
+  # get "plans/new" => "plans#new"
+  # post "plans/create" => "plans#create"
+  # get "plans/:id/plan_details/new" => "plan_details#new"
+  # post "plans/:id" => "plans#show"
+  resources :plans do
+    resources :plan_details
+  end
 end

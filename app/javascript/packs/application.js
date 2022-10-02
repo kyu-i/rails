@@ -16,5 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 console.log('Hello World from Webpacker');
-require("jquery");
-require("@nathanvda/cocoon");
+// require("jquery");
+// require("@nathanvda/cocoon");
+// import 'cocoon-js';
+require ("src/cocoon")
