@@ -19,7 +19,9 @@ class PlansController < ApplicationController
             flash[:notice] = "plan not save"
         end
         
-        render("plans/create")
+        # render("plan_details/new")
+        redirect_to("/plans/#{@plan.id}/plan_details/new")
+
     end
     
     def show

@@ -1,0 +1,43 @@
+<div class="title_box">
+<h3><%= @plan.title %></h3>
+<div class="date">
+    <%= @plan.start_date %>~<%= @plan.end_date %>
+</div>
+</div>
+
+<div class="plan">
+    <%= form_with model: @plan, url: "/plans/#{@plan.id}/plan_details/create" do |f| %>
+        <%= f.fields_for :plan_details do |t| %>
+            <%= render "plan_detail_fields", f: t %>
+        <% end %>
+        <%= link_to_add_association "追加", f, :plan_details%>
+        <%= f.submit "予定の登録" %>
+    <% end %>
+</div>
+    
+
+<script type="text/javascript">
+// var plancount = 1;
+// $('.plan_add').click(function() {
+//     var select_id = $(this).val();
+//     plancount++;
+//     $plan_clone = $('.plan_detail_' + select_id).clone(true)
+//     .attr('class', 'plan_detail_' + plancount)
+//     .insertAfter('.plan_detail_' + select_id); 
+//     $plan_clone.find('.button').val(plancount);
+
+//     $plan_clone.find('.spot_date').val("");
+//     $plan_clone.find('.start_time').val("");
+//     $plan_clone.find('.end_time').val("");
+//     $plan_clone.find('.destination').val("");
+//     $plan_clone.find('.spot_content').val("");
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+    // $plan_clone.find('').attr('name', );
+
+
+// });
+</script>

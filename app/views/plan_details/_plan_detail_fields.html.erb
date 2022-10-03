@@ -1,0 +1,12 @@
+<div class="nested-fields">
+
+    <%#= f.date_field :spot_date %>
+    <%# <div class="spot_time"> %>
+        <%#= f.time_field :start_time %><%#= f.time_field :end_time %>
+    <%# </div> %>
+	<%= f.text_field :destination, :class => "destination", :placeholder => "タイトル" %>
+    <%#= f.text_field :destination %>
+    <%#= f.text_field :spot_content %>
+
+	<%= link_to_remove_association "remove plan_detail", f %>
+</div>

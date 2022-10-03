@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get "plans" => "plans#index"
   get "plans/new" => "plans#new"
   post "plans/create" => "plans#create"
-  post "plans/:id/plan_details/new" => "plan_details#new"
+  get "plans/:id/plan_details/new" => "plan_details#new"
   post "plans/:id" => "plans#show"
+  # post "plans/:id/plan_details/create" => "plan_details#create"
+  patch "plans/:id/plan_details/create" => "plan_details#create"
+  # resources :plans do
+  #   resources :plan_details
+  # end
 end
