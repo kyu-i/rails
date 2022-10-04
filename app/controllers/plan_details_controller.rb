@@ -24,6 +24,15 @@ class PlanDetailsController < ApplicationController
         # params.require(:plan_detail).permit(:spot_date,:start_time,:end_time,
         #     :destination,:spot_content,:movement, :_destroy).merge(plan_id: params[:id])
         
-        params.require(:plan_detail).merge(plan_id: params[:id])
-    end
+        
+        # params.require(:plan).permit(plan_detail_attributes: [:spot_date,
+        #     :destination,:spot_content,:movement, :_destroy]).merge(plan_id: params[:id])
+            
+        # params.require(:plan).permit(plan_detail: [plan_detail_attributes: [:spot_date,
+        #             :destination,:spot_content,:movement, :_destroy]]).merge(plan_id: params[:id])
+        
+        params.require(:plan).permit(plan_detail: ['0': [plan_detail_attributes: [:spot_date,
+                    :destination,:spot_content,:movement, :_destroy]]]).merge(plan_id: params[:id])
+        
+        end
 end
