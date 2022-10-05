@@ -3,12 +3,16 @@
     <h3><%= @plan.start_date %></h3><p>~</p><h3><%= @plan.end_date %></h3>
     <p><%= @plan.memo %></p>
 </div>
+
+
 <div class="container">
+    <% @plan_detail.each do |f| %>
     <div class="container_left">
-        <div class="spot_time"><%= @plan_detail.start_time.strftime("%H:%M") %><p>~</p><%= @plan_detail.end_time.strftime("%H:%M") %></div>
+        <div class="spot_time">
+        <% if f.start_time!=nil%><%= f.start_time.strftime("%H:%M") %><%end%><p>~</p><% if f.end_time!=nil%><%= f.end_time.strftime("%H:%M") %><%end%></div>
         </div>
     <div class="container_right">
-        <h2><%= @plan_detail.destination %></h2>
-        <p class="destination_text"><%= @plan_detail.spot_content %></p>
+        <h2><% if f.destination!=nil%><%= f.destination %><%end%></h2>
     </div>
+    <% end %>
 </div>

@@ -4,35 +4,21 @@ class PlanDetailsController < ApplicationController
     
     def new    
         @plan = Plan.find params[:id]
-        @plan_detail = @plan.plan_details.build
+        @plan_detail_form = Form::PlanDetailCollection.new
     end
 
     def create
-        @plan_detail = PlanDetail.new(plan_detail_params) 
-        if @plan_detail.save
-            flash[:notice] = "detail save"
-        else 
-            flash[:notice] = "detail not save"
+        @plan = Plan.find params[:id]
+        @plan_detail_form = Form::PlanDetailCollection.new(plan_details_collection_params)
+        if @plan_detail_form.save
+            redirect_to root_path, notice: "保存しました。"
+        else
+            render :new
         end
     end
 
     private
-    def plan_detail_params
-        # params.permit(:spot_date,:start_time,:end_time,
-        #     :destination,:spot_contmovement).merge(plan_id: params[:id])
-            
-        # params.require(:plan_detail).permit(:spot_date,:start_time,:end_time,
-        #     :destination,:spot_content,:movement, :_destroy).merge(plan_id: params[:id])
-        
-        
-        # params.require(:plan).permit(plan_detail_attributes: [:spot_date,
-        #     :destination,:spot_content,:movement, :_destroy]).merge(plan_id: params[:id])
-            
-        # params.require(:plan).permit(plan_detail: [plan_detail_attributes: [:spot_date,
-        #             :destination,:spot_content,:movement, :_destroy]]).merge(plan_id: params[:id])
-        
-        params.require(:plan).permit(plan_detail: ['0': [plan_detail_attributes: [:spot_date,
-                    :destination,:spot_content,:movement, :_destroy]]]).merge(plan_id: params[:id])
-        
-        end
+    def plan_details_collection_params
+        params.require(:form_plan_detail_collection).permit(plan_details_attributes: [:destination, :start_time, :end_time, :plan_id])
+    end
 end

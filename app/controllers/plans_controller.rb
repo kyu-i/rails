@@ -26,7 +26,8 @@ class PlansController < ApplicationController
     
     def show
         @plan = Plan.find_by(id: params[:id])
-        @plan_detail = PlanDetail.find_by(plan_id: params[:id])
+        # @plan_detail = PlanDetail.find_by(plan_id: params[:id])
+        @plan_detail = PlanDetail.where(plan_id: @plan.id)
     end
 
     private

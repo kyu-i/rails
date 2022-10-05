@@ -5,39 +5,46 @@
 </div>
 </div>
 
+
 <div class="plan">
-    <%= form_with model: @plan, url: "/plans/#{@plan.id}/plan_details/create" do |f| %>
-        <%= f.fields_for :plan_details do |t| %>
-            <%= render "plan_detail_fields", f: t %>
-        <% end %>
-        <%= link_to_add_association "追加", f, :plan_details%>
+    <%= form_for @plan_detail_form, url: "/plans/#{@plan.id}/plan_details/create" do |f| %>
+        <div class="nested-fields">
+            <%= f.fields_for :plan_details do |t| %>
+                <div class="nested-field_<%= t.index %>">
+                    <%= t.time_field :start_time %>~<%= t.time_field :end_time %>
+                    <%= t.text_field :destination %>
+                    <%= t.hidden_field :plan_id, value: @plan.id %>
+                </div>
+            <% end %>
+        </div>
+
+        <a href="javascript:void(0);" class="plan_add_btn" data-plan_count="">追加</a>
         <%= f.submit "予定の登録" %>
     <% end %>
+
 </div>
     
 
 <script type="text/javascript">
-// var plancount = 1;
-// $('.plan_add').click(function() {
-//     var select_id = $(this).val();
-//     plancount++;
-//     $plan_clone = $('.plan_detail_' + select_id).clone(true)
-//     .attr('class', 'plan_detail_' + plancount)
-//     .insertAfter('.plan_detail_' + select_id); 
-//     $plan_clone.find('.button').val(plancount);
+let default_plan_count = "<%= Form::PlanDetailCollection::FORM_COUNT %>";
 
-//     $plan_clone.find('.spot_date').val("");
-//     $plan_clone.find('.start_time').val("");
-//     $plan_clone.find('.end_time').val("");
-//     $plan_clone.find('.destination').val("");
-//     $plan_clone.find('.spot_content').val("");
-    // $plan_clone.find('').attr('name', );
-    // $plan_clone.find('').attr('name', );
-    // $plan_clone.find('').attr('name', );
-    // $plan_clone.find('').attr('name', );
-    // $plan_clone.find('').attr('name', );
-    // $plan_clone.find('').attr('name', );
+$(".plan_add_btn").data("plan_count", default_plan_count);
 
+$('.plan_add_btn').click(function() {
+    let current_plan_count = $(this).data("plan_count");
 
-// });
+    let target_area = '.nested-field_'+(current_plan_count - 1);
+    let plan_html = `
+        <div class="nested-field_${current_plan_count}">
+            <input type="time" name="form_plan_detail_collection[plan_details_attributes][${current_plan_count}][start_time]" id="form_plan_detail_collection_plan_details_attributes_${current_plan_count}_start_time">~
+            <input type="time" name="form_plan_detail_collection[plan_details_attributes][${current_plan_count}][end_time]" id="form_plan_detail_collection_plan_details_attributes_${current_plan_count}_end_time">
+            <input type="text" name="form_plan_detail_collection[plan_details_attributes][${current_plan_count}][destination]" id="form_plan_detail_collection_plan_details_attributes_${current_plan_count}_destination">
+            <input value="<%= @plan.id %>" autocomplete="off" type="hidden" name="form_plan_detail_collection[plan_details_attributes][${current_plan_count}][plan_id]" id="form_plan_detail_collection_plan_details_attributes_${current_plan_count}_plan_id">
+        </div>
+    `;
+
+    $(".nested-fields").append(plan_html);
+
+    $(this).data("plan_count", (Number(current_plan_count) + 1))
+});
 </script>
