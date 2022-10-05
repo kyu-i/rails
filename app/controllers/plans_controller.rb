@@ -6,8 +6,6 @@ class PlansController < ApplicationController
 
     def new        
         @plan = Plan.new() 
-        # @plan_detail = @plan.detail_plans.build
-        # @plan_detail = PlanDetail.new() 
     end
 
     
@@ -18,15 +16,12 @@ class PlansController < ApplicationController
         else 
             flash[:notice] = "plan not save"
         end
-        
-        # render("plan_details/new")
         redirect_to("/plans/#{@plan.id}/plan_details/new")
 
     end
     
     def show
         @plan = Plan.find_by(id: params[:id])
-        # @plan_detail = PlanDetail.find_by(plan_id: params[:id])
         @plan_detail = PlanDetail.where(plan_id: @plan.id)
     end
 

@@ -8,9 +8,5 @@ Rails.application.routes.draw do
   post "plans/create" => "plans#create"
   get "plans/:id/plan_details/new" => "plan_details#new"
   get "plans/:id" => "plans#show"
-  # post "plans/:id/plan_details/create" => "plan_details#create"
   post "plans/:id/plan_details/create" => "plan_details#create"
-  # resources :plans do
-  #   resources :plan_details
-  # end
 end
