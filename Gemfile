@@ -52,8 +52,8 @@ gem 'omniauth-twitter'
 # Webpacker
 gem 'webpacker'
 
-# cocoon
-gem 'cocoon'
+# for degug
+gem 'pry-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
